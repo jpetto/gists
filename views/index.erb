@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Gist Catalog</title>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+
+	<style type="text/css">
+		*, *:before, *:after {
+			-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+		}
+
+		#gist-app {
+			width: 1000px;
+			margin: 0 auto;
+		}
+
+		#gist-app:after {
+			clear: both;
+			content: '';
+			display: table;
+		}
+
+		.column {
+			float: left;
+		}
+
+		.column-main {
+			width: 400px;
+			margin-right: 40px;
+		}
+
+		.column-sidebar {
+			width: 560px;
+		}
+
+		.private {
+			background: #f1f1ce;
+		}
+	</style>
+</head>
+<body>
+
+<main role="main" id="gist-app">
+	<h1>Gist Catalog</h1>
+
+	<div class="column column-main">
+		<button id="cache-gists">Cache Those Gists!</button>
+		<ul id="gist-list"></ul>
+	</div>
+	<div class="column column-sidebar">
+		<form action="/api/gists" id="edit-form" method="put">
+			<fieldset>
+				<legend>Update Gist</legend>
+				<p>
+					<label for="_id">ID</label>
+					<input type="text" name="_id" id="_id" readonly>
+				</p>
+				<p>
+					<label for="github_id">GitHub ID</label>
+					<input type="text" name="github_id" id="github_id" readonly>
+				</p>
+				<p>
+					<label for="description">Description</label>
+					<input type="text" name="description" id="description">
+				</p>
+				<p>
+					<label for="categories">Categories</label>
+					<textarea name="categories" id="categories" cols="30" rows="5"></textarea>
+				</p>
+
+				<button type="submit" id="edit-gist">Edit Gist</button>
+			</fieldset>
+		</form>
+	</div>
+</main>
+
+<script type="text/template" id="gist-item-template">
+	<p>
+		<strong>{{= description }}</strong>
+	</p>
+
+	<small>Last updated: {{= updated_at }}</small>
+
+	<br>
+
+	<a href="{{= html_url }}">View on GitHub</a>
+	<a href="#" class="edit">Edit</a>
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/gist-model.js"></script>
+<script src="js/gist-view.js"></script>
+<script src="js/gist-collection.js"></script>
+<script src="js/app-view.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
