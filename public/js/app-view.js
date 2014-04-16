@@ -36,6 +36,12 @@ GistApp.AppView = Backbone.View.extend({
 
         // TODO: parse lines of textarea into array to get/save categories
 
-        console.log(gist);
+        $('#edit-form')[0].reset();
+
+        $('#gist-updated').slideDown('fast', function() {
+            setTimeout(function() {
+                $('#gist-updated').slideUp('fast');
+            }, 1500);
+        });
     }
 });

@@ -15,7 +15,7 @@ get '/' do
 end
 
 get '/api/populate' do
-  tmp = open('https://api.github.com/users/jpetto/gists', http_basic_authentication: [TOKEN, 'x-oauth-basic']).read
+  tmp = open("https://api.github.com/users/#{GITHUB_USERNAME}/gists", http_basic_authentication: [TOKEN, 'x-oauth-basic']).read
 
   # if tmp is over 10KB it's a Tempfile, otherwise it's a string
   gist_data = (tmp.is_a?(Tempfile)) ? JSON.parse(tmp.read) : JSON.parse(tmp)

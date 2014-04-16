@@ -14,7 +14,7 @@ window.GistAppView = new GistApp.AppView();
             $.getJSON('/api/populate', function(data) {
                 for (var i = 0; i < data.length; i++) {
                     // make sure gist isn't already cached
-                    if (!GistApp.Gists.findWhere({ id: data[i].id })) {
+                    if (!GistApp.Gists.findWhere({ github_id: data[i].id })) {
                         _gist_data = {
                             github_id: data[i].id,
                             public: data[i].public,
